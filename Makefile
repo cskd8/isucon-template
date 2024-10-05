@@ -9,6 +9,9 @@ BIN_NAME:=isucondition
 BUILD_DIR:=/home/isucon/webapp/go
 SERVICE_NAME:=$(BIN_NAME).go.service
 
+GIT_EMAIL:=mh4869203@gmail.com
+GIT_USERNAME:=hirocy
+
 DB_PATH:=/etc/mysql
 NGINX_PATH:=/etc/nginx
 SYSTEMD_PATH:=/etc/systemd/system
@@ -70,16 +73,15 @@ install-tools:
 	sudo apt install -y percona-toolkit dstat git unzip snapd graphviz tree
 
 	# alpのインストール
-	wget https://github.com/tkuchiki/alp/releases/download/v1.0.9/alp_linux_amd64.zip
+	wget https://github.com/tkuchiki/alp/releases/download/v1.0.21/alp_linux_amd64.zip
 	unzip alp_linux_amd64.zip
 	sudo install alp /usr/local/bin/alp
 	rm alp_linux_amd64.zip alp
 
 .PHONY: git-setup
 git-setup:
-	# git用の設定は適宜変更して良い
-	git config --global user.email "isucon@example.com"
-	git config --global user.name "isucon"
+	git config --global user.email $GIT_EMAIL
+	git config --global user.name $GIT_USERNAME
 
 	# deploykeyの作成
 	ssh-keygen -t ed25519
