@@ -1,1 +1,1 @@
-# traP-isucon-newbie-handson2022
+# isucon-template
