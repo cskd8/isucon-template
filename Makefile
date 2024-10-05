@@ -17,7 +17,9 @@ NGINX_PATH:=/etc/nginx
 SYSTEMD_PATH:=/etc/systemd/system
 
 NGINX_LOG:=/var/log/nginx/access.log
-DB_SLOW_LOG:=/var/log/mysql/mariadb-slow.log
+DB_SLOW_LOG:=/var/log/mysql/mysql-slow.log
+
+PPROF_TIME:=120
 
 
 # メインで使うコマンド ------------------------
@@ -51,7 +53,7 @@ alp:
 # pprofで記録する
 .PHONY: pprof-record
 pprof-record:
-	go tool pprof http://localhost:6060/debug/fgprof/profile
+	go tool pprof http://localhost:6060/debug/fgprof?seconds=$(PPROF_TIME)
 
 # pprofで確認する
 .PHONY: pprof-check
@@ -80,8 +82,8 @@ install-tools:
 
 .PHONY: git-setup
 git-setup:
-	git config --global user.email $GIT_EMAIL
-	git config --global user.name $GIT_USERNAME
+	git config --global user.email $(GIT_EMAIL)
+	git config --global user.name $(GIT_USERNAME)
 
 	# deploykeyの作成
 	ssh-keygen -t ed25519
