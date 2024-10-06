@@ -19,6 +19,12 @@ SYSTEMD_PATH:=/etc/systemd/system
 NGINX_LOG:=/var/log/nginx/access.log
 DB_SLOW_LOG:=/var/log/mysql/mysql-slow.log
 
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=isucon
+MYSQL_PASS=isucon
+MYSQL_DBNAME=isucon
+
 PPROF_TIME:=90
 
 
